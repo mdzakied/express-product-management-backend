@@ -9,6 +9,7 @@ import productRoute from "./routes/productRoute";
 import { initializeAdminAccount } from "./init/initializeAdminAccount";
 
 // Initialize express
+// Initialize express
 const app = express();
 
 // Connect to MongoDB
@@ -28,6 +29,7 @@ app.use("/api/products", productRoute);
 app.use((req: Request, res: Response) => {
   res.status(404).json({ status: 404, message: "Route not found" });
 });
+
 
 // Start the server
 const startServer = async () => {
