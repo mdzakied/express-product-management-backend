@@ -6,7 +6,7 @@ import { IUserService } from "../IUserService";
 
 import User from "../../models/userModel";
 import { IUser } from "../../models/userModel";
-import { blacklistTokens } from "../../models/blacklistToken";
+import { blacklistTokens } from "../../utils/blacklistToken";
 
 import { Role } from "../../enums/role.enum";
 

@@ -66,7 +66,7 @@ export const registerAdminController = async (
         role: newUser.role,
       },
     });
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.error(error);
 
     // Check if the error is an instance of Error and cast it accordingly
@@ -137,7 +137,7 @@ export const registerViewerController = async (
         role: newUser.role,
       },
     });
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.error(error);
 
     // Check if the error is an instance of Error and cast it accordingly
@@ -166,7 +166,7 @@ export const loginController = async (
       token,
       user,
     });
-  } catch (error: unknown) {
+  } catch (error: any) {
     // Check if the error is an instance of Error and cast it accordingly
     const errorMessage =
       error instanceof Error ? error.message : "Something went wrong!";
@@ -198,7 +198,7 @@ export const logoutController = async (
       status: 200,
       message: "User logged out successfully",
     });
-  } catch (error: unknown) {
+  } catch (error: any) {
     // Check if the error is an instance of Error and cast it accordingly
     const errorMessage =
       error instanceof Error ? error.message : "Something went wrong!";

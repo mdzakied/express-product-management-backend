@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-import { blacklistTokens } from "../models/blacklistToken";
+import { blacklistTokens } from "../utils/blacklistToken";
 
 // Middleware to verify JWT token
 const authMiddleware = (

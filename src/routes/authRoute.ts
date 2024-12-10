@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   registerAdminController,
   registerViewerController,
@@ -22,6 +23,7 @@ router.post(
     registerAdminController(req, res);
   }
 );
+
 // Register Viewer route
 router.post(
   "/register-viewer",
