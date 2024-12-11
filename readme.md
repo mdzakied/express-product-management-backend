@@ -87,14 +87,14 @@ git clone https://github.com/mdzakied/express-product-management-backend.git
 <p>3. Complete and Adjust configuration in file .env</p>
 
 ```
-# MongoDB connection
+# MongoDB Connection
 MONGODB_URI=mongodb://localhost:27017/db_product_management
 
 # JWt Configuration
 JWT_SECRET=express-product-management-backend
 JWT_EXPIRATION=1h
 
-# Allow cors
+# Allow Cors
 CLIENT_URL=http://localhost:3000
 ```
 
