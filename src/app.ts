@@ -9,8 +9,8 @@ import productRoute from "./routes/productRoute";
 import { initializeAdminAccount } from "./init/initializeAdminAccount";
 
 // Initialize express
-// Initialize express
 const app = express();
+const cors = require("cors");
 
 // Connect to MongoDB
 connectDB();
@@ -20,6 +20,13 @@ dotenv.config();
 
 // Middleware
 app.use(express.json());
+
+// Allow cross-origin requests from your frontend (adjust the URL)
+app.use(cors({
+  origin: process.env.CLIENT_URL, // Your app's URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 // All routes are now prefixed with /api
 app.use("/api/auth", authRoute);
