@@ -1,37 +1,12 @@
 <h1 align="center" id="title">express-product-management-backend</h1>
 
-<p align="center" id="description">Building a REST API for Product Management System with Multi-User Access.</p>
+<p align="center" id="description">RESTful API for Product Management System with Multi-User Access.</p>
 
 <br>
 <h2 align="center">ERD (Entity-Relationship Diagram)</h2>
 <div style="display: flex; justify-content: center;">
 <img width="100%" alt="erd_db_product_managmenet" src="https://github.com/user-attachments/assets/b952c2b3-2eaa-44cc-8ea5-3667129e7baf">
 </div>
-
-<br>
-<h2>🚀 Requirements</h2>
-
-Here're some of the project's requirments :
-
-Aplikasi di unggah di akun git kamu dan pastikan memiliki akses public.
-
-Kebutuhan:
-  1. Bisa melakukan pembuatan akun ✔️
-  2. Bisa melakukan login ✔️
-  3. Menyimpan data user di database ✔️
-  4. Bisa mengakses profile dengan header token JWT, response berbentuk JSON ✔️
-  5. Bisa membuat CRUD product dengan REST API + header token JWT dan session pada front-end nya 📍 (In Frontend)
-
-Aturan:
-  1. Silakan menggunakan bahasa pemrograman yang kamu bisa ( Rekomendasi ~~Python~~ / Node JS) ✔️
-  2. Gunakanlah framework atau library yang mempermudah proses pembuatan di lebih di rekomendasikan ~~framework python~~ ( ~~Flask~~ / ~~Sanic~~ atau Expres Js) ✔️
-  3. Untuk User Interface kami merekomendasikan menggunakan framework dari Node JS ( React JS/ Next JS dan nilai plus jika menambahkan redux) 📍 (In Frontend)
-  4. Gunakan database sesuai yang kamu rasa cocok, pilihannya ~~PostgreSQL~~ atau MongoDB ✔️
-  5. Menggunakan JWT (JSON Web Token) untuk autentikasi ✔️
-  6. Kamu harus mengirimkan aplikasimu di repositori git public ✔️
-  7. Aplikasimu harus bisa dijalankan di local ✔️
-  8. Deploy aplikasi di heroku atau vps (nilai tambah) 
-  9. Dokumentasi API (nilai tambah) ✔️
 
 <br>
 <h2>🌐 Api Endpoint</h2>
