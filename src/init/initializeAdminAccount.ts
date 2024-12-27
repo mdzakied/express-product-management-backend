@@ -1,12 +1,13 @@
 import bcrypt from "bcrypt";
+import User from "../models/UserModel";
 
-import User from "../models/userModel";
-import { Role } from "../enums/role.enum";
+import { UserRoleEnum } from "../enums/UserRoleEnum";
 
+// Initialize admin account
 export const initializeAdminAccount = async (): Promise<void> => {
   try {
     // Check if admin account already exists
-    const existingAdmin = await User.findOne({ role: Role.ADMIN });
+    const existingAdmin = await User.findOne({ name: "Admin" });
 
     // If admin account already exists, do not create a new one
     if (existingAdmin) {
@@ -21,7 +22,7 @@ export const initializeAdminAccount = async (): Promise<void> => {
       name: "Admin",
       email: "admin@example.com",
       password: hashedPassword,
-      role: Role.ADMIN,
+      role: UserRoleEnum.ADMIN,
       gender: "Male",
     });
 

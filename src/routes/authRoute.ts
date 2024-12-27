@@ -5,12 +5,12 @@ import {
   registerViewerController,
   loginController,
   logoutController,
-} from "../controllers/authController";
+} from "../controllers/AuthController";
 
 import authMiddleware from "../middlewares/authMiddleware";
 import authRoleMiddleware from "../middlewares/authRoleMiddleware";
 
-import { Role } from "../enums/role.enum";
+import { UserRoleEnum } from "../enums/UserRoleEnum";
 
 // Create a new router
 const router: Router = Router();
@@ -18,7 +18,7 @@ const router: Router = Router();
 // Register Admin route
 router.post(
   "/register-admin",
-  authRoleMiddleware(Role.ADMIN),
+  authRoleMiddleware(UserRoleEnum.ADMIN),
   function (req, res) {
     registerAdminController(req, res);
   }
@@ -27,7 +27,7 @@ router.post(
 // Register Viewer route
 router.post(
   "/register-viewer",
-  authRoleMiddleware(Role.VIEWER),
+  authRoleMiddleware(UserRoleEnum.ADMIN),
   function (req, res) {
     registerViewerController(req, res);
   }

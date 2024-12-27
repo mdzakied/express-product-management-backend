@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import dotenv from "dotenv";
 
+import dotenv from "dotenv";
 import connectDB from "./config/database/connection";
 
 import authRoute from "./routes/authRoute";

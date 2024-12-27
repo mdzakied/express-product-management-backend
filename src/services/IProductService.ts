@@ -1,5 +1,4 @@
-// Import models
-import { IProduct } from "../models/productModel";
+import { IProduct } from "../models/ProductModel";
 
 // Define the ProductService interface
 export interface IProductService {

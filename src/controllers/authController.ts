@@ -1,9 +1,12 @@
-// Import express
 import { Request, Response } from "express";
-
-import { IUser } from "../models/userModel";
-
+import { IUser } from "../models/UserModel";
 import { userService } from "../services/impl/UserService";
+
+import { RegisterRequestDTO } from "../dtos/auth/request/RegisterRequestDTO";
+import { RegisterResponseDTO } from "../dtos/auth/response/RegisterResponseDTO";
+
+import { LoginRequestDTO } from "../dtos/auth/request/LoginRequestDTO";
+import { LoginResponseDTO } from "../dtos/auth/response/LoginResponseDTO";
 
 // Register a new admin
 export const registerAdminController = async (
@@ -11,7 +14,7 @@ export const registerAdminController = async (
   res: Response
 ): Promise<Response> => {
   // Destructure the request body
-  const { name, email, password, gender } = req.body;
+  const { name, email, password, gender }: RegisterRequestDTO = req.body;
 
   // Manual validation
   if (!name || !email || !password || !gender) {
@@ -55,8 +58,8 @@ export const registerAdminController = async (
       gender
     );
 
-    // Send the response back to the client
-    return res.status(201).json({
+    // Construct the response
+    const response: RegisterResponseDTO = {
       status: 201,
       message: "Admin registered successfully",
       user: {
@@ -65,7 +68,10 @@ export const registerAdminController = async (
         gender: newUser.gender,
         role: newUser.role,
       },
-    });
+    };
+
+    // Return the response
+    return res.status(201).json(response);
   } catch (error: any) {
     console.error(error);
 
@@ -82,7 +88,7 @@ export const registerViewerController = async (
   res: Response
 ): Promise<Response> => {
   // Destructure the request body
-  const { name, email, password, gender } = req.body;
+  const { name, email, password, gender }: RegisterRequestDTO = req.body;
 
   // Manual validation
   if (!name || !email || !password || !gender) {
@@ -109,7 +115,7 @@ export const registerViewerController = async (
     });
   }
 
-  // Validate gender (it should be male, female, or other)
+  // Validate gender (it should be male or female)
   if (!["Male", "Female"].includes(gender)) {
     return res.status(400).json({
       status: 400,
@@ -126,8 +132,8 @@ export const registerViewerController = async (
       gender
     );
 
-    // Send the response back to the client
-    return res.status(201).json({
+    // Construct the response
+    const response: RegisterResponseDTO = {
       status: 201,
       message: "Viewer registered successfully",
       user: {
@@ -136,7 +142,10 @@ export const registerViewerController = async (
         gender: newUser.gender,
         role: newUser.role,
       },
-    });
+    };
+
+    // Return the response
+    return res.status(201).json(response);
   } catch (error: any) {
     console.error(error);
 
@@ -153,19 +162,21 @@ export const loginController = async (
   res: Response
 ): Promise<Response> => {
   // Destructure the request body
-  const { email, password } = req.body;
+  const { email, password }: LoginRequestDTO = req.body;
 
   try {
     // Destructure the returned token and user
-    const { token, user } = await userService.login(email, password);
+    const token = await userService.login(email, password);
 
-    // Send the response back to the client
-    return res.status(200).json({
+    // Construct the response
+    const response: LoginResponseDTO = {
       status: 200,
       message: "User logged in successfully",
-      token,
-      user,
-    });
+      token : token,
+    };
+
+    // Return the response
+    return res.status(200).json(response);
   } catch (error: any) {
     // Check if the error is an instance of Error and cast it accordingly
     const errorMessage =

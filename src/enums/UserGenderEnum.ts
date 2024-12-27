@@ -1,5 +1,5 @@
 // Enum for user gender
-export enum Gender {
+export enum UserGenderEnum {
   MALE = "Male",
   FEMALE = "Female",
 }

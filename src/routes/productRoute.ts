@@ -5,18 +5,18 @@ import {
   getAllProductsController,
   updateProductController,
   deleteProductController,
-} from "../controllers/productController";
+} from "../controllers/ProductController";
 
 import authMiddleware from "../middlewares/authMiddleware";
 import authRoleMiddleware from "../middlewares/authRoleMiddleware";
 
-import { Role } from "../enums/role.enum";
+import { UserRoleEnum } from "../enums/UserRoleEnum";
 
 // Create a new router
 const router: Router = Router();
 
 // Add a new product route
-router.post("/", authRoleMiddleware(Role.ADMIN), function (req, res) {
+router.post("/", authRoleMiddleware(UserRoleEnum.ADMIN), function (req, res) {
   createProductController(req, res);
 });
 
@@ -26,12 +26,12 @@ router.get("/", authMiddleware, function (req, res) {
 });
 
 // Update a product route
-router.put("/:id", authRoleMiddleware(Role.ADMIN), function (req, res) {
+router.put("/:id", authRoleMiddleware(UserRoleEnum.ADMIN), function (req, res) {
   updateProductController(req, res);
 });
 
 // Delete a product route
-router.delete("/:id", authRoleMiddleware(Role.ADMIN), function (req, res) {
+router.delete("/:id", authRoleMiddleware(UserRoleEnum.ADMIN), function (req, res) {
   deleteProductController(req, res);
 });
 

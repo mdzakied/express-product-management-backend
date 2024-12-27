@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
-import Product, { IProduct } from "../../models/productModel";
+
+import ProductModel, { IProduct } from "../../models/ProductModel";
+
 import { IProductService } from "../IProductService";
+import ProductRepository from "../../repositories/ProductRepository";
 
 class ProductService implements IProductService {
   // Create a new product
@@ -11,16 +14,16 @@ class ProductService implements IProductService {
   ): Promise<IProduct> {
     try {
       // Check if a product with the same name already exists
-      const existingProduct = await Product.findOne({ name });
+      const existingProduct = await ProductRepository.findByName(name);
       if (existingProduct) {
         throw new Error(`Product with name "${name}" already exists.`);
       }
 
       // Create product
-      const product = new Product({ name, description, price });
+      const product = new ProductModel({ name, description, price });
 
-      // Save product
-      return await product.save();
+      // Save product to repository
+      return await ProductRepository.createProduct(product);
     } catch (error: any) {
       // Throw error
       throw new Error(
@@ -60,17 +63,16 @@ class ProductService implements IProductService {
       }
 
       // Count total matching documents
-      const total = await Product.countDocuments(query);
+      const total = await ProductRepository.countDocuments(query);
 
-      // Sort direction
-      const sortDirection =
-        direction === "asc" ? 1 : direction === "desc" ? -1 : (0 as any);
-
-      // Fetch paginated, sorted results
-      const data = await Product.find(query)
-        .sort({ [field]: sortDirection }) // Sort direction
-        .skip((page - 1) * size) // Pagination offset
-        .limit(size); // Pagination limit
+      // Get products with pagination from repository
+      const data = await ProductRepository.findByQuery(
+        query,
+        page,
+        size,
+        field,
+        direction
+      );
 
       // Return data
       return { data, total, pagination, sort };
@@ -93,21 +95,20 @@ class ProductService implements IProductService {
         throw new Error("Product not found.");
       }
 
-      // Find the product
-      const product = await Product.findById(productId);
+      // Find the product from repository
+      const product = await ProductRepository.findById(productId);
 
       // Check if product exists
       if (!product) {
         throw new Error("Product not found.");
       }
 
-      // Check if a product with the same name (other than the current product) already exists
+      // Check if a product with the same name (other than the current product) already exists from repository
       if (updates.name) {
-        const existingProduct = await Product.findOne({
-          name: updates.name,
-          _id: { $ne: productId }, // Ensure we're not matching the product being updated
-        });
-        if (existingProduct) {
+        const existingProduct = await ProductRepository.findByName(
+          updates.name
+        );
+        if (existingProduct && existingProduct._id !== productId) {
           throw new Error(
             `Product with name "${updates.name}" already exists.`
           );
@@ -115,10 +116,7 @@ class ProductService implements IProductService {
       }
 
       // Update product and check if it exists
-      return await Product.findByIdAndUpdate(productId, updates, {
-        new: true, // Return the updated document
-        runValidators: true, // Run schema validators
-      });
+      return await ProductRepository.updateProduct(productId, updates);
     } catch (error: any) {
       // Throw error
       throw new Error(
@@ -135,16 +133,16 @@ class ProductService implements IProductService {
         throw new Error("Product not found.");
       }
 
-      // Find the product
-      const product = await Product.findById(productId);
+      // Find the product from repository
+      const product = await ProductRepository.findById(productId);
 
       // Check if product exists
       if (!product) {
         throw new Error("Product not found.");
       }
 
-      // Delete product
-      const result = await Product.findByIdAndDelete(productId);
+      // Delete product to repository
+      const result = await ProductRepository.deleteProduct(productId);
       if (!result) {
         throw new Error("Product not found.");
       }

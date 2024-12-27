@@ -1,4 +1,3 @@
-// Import jwt
 import jwt from 'jsonwebtoken';
 
 // Generate token jwt

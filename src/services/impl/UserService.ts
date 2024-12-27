@@ -3,14 +3,12 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 import { IUserService } from "../IUserService";
+import UserRepository from "../../repositories/UserRepository";
 
-import User from "../../models/userModel";
-import { IUser } from "../../models/userModel";
+import UserModel, { IUser }  from "../../models/UserModel";
+import { UserRoleEnum } from "../../enums/UserRoleEnum";
+
 import { blacklistTokens } from "../../utils/blacklistToken";
-
-import { Role } from "../../enums/role.enum";
-
-import { LoginReturn } from "../../interface/LoginReturn";
 
 export class UserService implements IUserService {
   // Register a new admin
@@ -21,9 +19,10 @@ export class UserService implements IUserService {
     gender: string
   ): Promise<IUser> {
     try {
-      // Check if email already exists
-      const existingUser = await User.findOne({ name });
-      const existingEmail = await User.findOne({ email });
+      // Check if name or email already exists from repository
+      const existingUser = await UserRepository.findByName(name);
+      const existingEmail = await UserRepository.findByEmail(email);
+
       if (existingUser) {
         throw new Error("User already exists!");
       } else if (existingEmail) {
@@ -34,16 +33,16 @@ export class UserService implements IUserService {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Create new user
-      const newUser = new User({
+      const newUser = new UserModel({
         name,
         email,
         password: hashedPassword,
         gender,
-        role: Role.ADMIN,
+        role: UserRoleEnum.ADMIN,
       });
 
-      // Save user
-      await newUser.save();
+      // Save user to repository
+      await UserRepository.create(newUser);
 
       // Return user
       return newUser;
@@ -63,9 +62,10 @@ export class UserService implements IUserService {
     gender: string
   ): Promise<IUser> {
     try {
-      // Check if email already exists
-      const existingUser = await User.findOne({ name });
-      const existingEmail = await User.findOne({ email });
+      // Check if name or email already exists from repository
+      const existingUser = await UserRepository.findByName(name);
+      const existingEmail = await UserRepository.findByEmail(email);
+
       if (existingUser) {
         throw new Error("User already exists!");
       } else if (existingEmail) {
@@ -76,16 +76,16 @@ export class UserService implements IUserService {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Create new user
-      const newUser = new User({
+      const newUser = new UserModel({
         name,
         email,
         password: hashedPassword,
         gender,
-        role: Role.VIEWER,
+        role: UserRoleEnum.VIEWER,
       });
 
-      // Save user
-      await newUser.save();
+      // Save user to repository
+      await UserRepository.create(newUser);
 
       // Return user
       return newUser;
@@ -98,10 +98,10 @@ export class UserService implements IUserService {
   }
 
   // Login a user
-  async login(email: string, password: string): Promise<LoginReturn> {
+  async login(email: string, password: string): Promise<string> {
     try {
-      // Check if user exists
-      const user = await User.findOne({ email });
+      // Check if user exists from repository
+      const user = await UserRepository.findByEmail(email);
       if (!user) {
         throw new Error("User not found!");
       }
@@ -127,19 +127,8 @@ export class UserService implements IUserService {
         { expiresIn: "1h" } // Token expires in 1 hour
       );
 
-      // Return user and token
-      const returnUser: LoginReturn = {
-        token: token,
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          gender: user.gender,
-          role: user.role,
-        },
-      };
-
-      return returnUser;
+      // Return token
+      return token;
     } catch (error: any) {
       // Throw error
       throw new Error(error.message || "Something went wrong during login!");

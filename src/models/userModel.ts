@@ -1,15 +1,15 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-import { Gender } from "../enums/gender.enum";
-import { Role } from "../enums/role.enum";
+import { UserGenderEnum } from "../enums/UserGenderEnum";
+import { UserRoleEnum } from "../enums/UserRoleEnum";
 
 // Define the User interface extending from Document
 export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  gender: Gender;
-  role: Role;
+  gender: UserGenderEnum;
+  role: UserRoleEnum;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -33,14 +33,14 @@ const userSchema: Schema<IUser> = new Schema(
     },
     gender: {
       type: String,
-      enum: Object.values(Gender),
+      enum: Object.values(UserGenderEnum),
       required: true,
     },
     role: {
       type: String,
-      enum: Object.values(Role),
+      enum: Object.values(UserRoleEnum),
       required: true,
-      default: Role.VIEWER, // Default role is VIEWER
+      default: UserRoleEnum.VIEWER, // Default role is VIEWER
     },
   },
   {
@@ -49,6 +49,6 @@ const userSchema: Schema<IUser> = new Schema(
 );
 
 // Create the User model
-const User = mongoose.model<IUser>("User", userSchema);
+const UserModel = mongoose.model<IUser>("User", userSchema);
 
-export default User;
+export default UserModel;

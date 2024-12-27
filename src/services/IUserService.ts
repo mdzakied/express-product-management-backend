@@ -1,9 +1,5 @@
-// Import models
-import { IUser } from "../models/userModel";
-
-import { Gender } from "../enums/gender.enum";
-
-import { LoginReturn } from "../interface/LoginReturn";
+import { IUser } from "../models/UserModel";
+import { UserGenderEnum } from "../enums/UserGenderEnum";
 
 // Define the UserService interface
 export interface IUserService {
@@ -11,7 +7,7 @@ export interface IUserService {
   registerAdmin(
     name: string,
     email: string,
-    gender: Gender,
+    gender: UserGenderEnum,
     password: string
   ): Promise<IUser>;
 
@@ -19,12 +15,12 @@ export interface IUserService {
   registerViewer(
     name: string,
     email: string,
-    gender: Gender,
+    gender: UserGenderEnum,
     password: string
   ): Promise<IUser>;
 
   // Login a user
-  login(email: string, password: string): Promise<LoginReturn>;
+  login(email: string, password: string): Promise<string>;
 
   // Logout a user
   logout(token: string): Promise<void>;

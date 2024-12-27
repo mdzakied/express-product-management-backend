@@ -197,7 +197,7 @@
 					"response": []
 				},
 				{
-					"name": "show all patients",
+					"name": "show all products",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -212,7 +212,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/products?name=Laptop&price=40&page=2&size=1&sort=name&direction=asc",
+							"raw": "{{base_url}}/products",
 							"host": [
 								"{{base_url}}"
 							],
@@ -222,27 +222,33 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "Laptop"
+									"value": "Laptop",
+									"disabled": true
 								},
 								{
 									"key": "price",
-									"value": "40"
+									"value": "30",
+									"disabled": true
 								},
 								{
 									"key": "page",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								},
 								{
 									"key": "size",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								},
 								{
 									"key": "sort",
-									"value": "name"
+									"value": "name",
+									"disabled": true
 								},
 								{
 									"key": "direction",
-									"value": "asc"
+									"value": "asc",
+									"disabled": true
 								}
 							]
 						}
@@ -274,13 +280,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/products/{{id}}",
+							"raw": "{{base_url}}/products/{{product_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"products",
-								"{{id}}"
+								"{{product_id}}"
 							]
 						}
 					},
@@ -311,13 +317,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/products/{{id}}",
+							"raw": "{{base_url}}/products/{{product_id}}",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"products",
-								"{{id}}"
+								"{{product_id}}"
 							]
 						}
 					},

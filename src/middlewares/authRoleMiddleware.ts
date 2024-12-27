@@ -3,15 +3,15 @@ import jwt from "jsonwebtoken";
 
 import { blacklistTokens } from "../utils/blacklistToken";
 
-import { Role } from "../enums/role.enum";
+import { UserRoleEnum } from "../enums/UserRoleEnum";
 
 // Middleware to verify JWT and check role
-const authRoleMiddleware = (requiredRole: Role) => {
+const authRoleMiddleware = (requiredRole: UserRoleEnum) => {
   return (req: Request, res: Response, next: NextFunction) => {
     // Get the token from the Authorization header
     const token = req.headers.authorization?.split(" ")[1]; // Token should be passed as "Bearer <token>"
 
-    // Periksa apakah token ada di blacklist
+    // Check if the token is in the blacklist
     if (blacklistTokens.has(token as string)) {
       res.status(401).json({ status: 401, message: "Token has been revoked" });
       return;
