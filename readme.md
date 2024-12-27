@@ -87,6 +87,15 @@ npm install
 npm run dev 
 ```
 
+<br />
+
+> [!NOTE]
+> Information in terminal :
+> * MongoDB connected to db_product_management
+> * Admin account initialized successfully (email: admin@example.com, pass: securePassword123)
+> * Server is running on port 4000
+
+<br />
 <h2>📃 Docs API</h2>
   
 Postman :
