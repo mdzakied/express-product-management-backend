@@ -26,7 +26,7 @@ The **Productly - Webservice API** is a comprehensive solution designed to manag
 - **Backend:** TypeScript with Express.js
 - **Database:** MongoDB
 - **Security:** JWT for secure authentication and role-based access control
-- **Testing:** Postman for API endpoint validation
+- **Testing:** Postman for endpoint documentation and testing
 - **Architecture:** Clean Architecture with structured separation of concerns
 
 ---
