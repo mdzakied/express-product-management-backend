@@ -147,15 +147,3 @@ Postman :
 * Open Postman and Import for environments docs/Product Management.postman_environment.json
 
 ---
-
-<h2>💻 Built with</h2>
-
-Technologies used in the project :
-
-*   MongoDB
-*   Node.js
-*   Express
-*   Typescript
-*   jsonwebtoken
-*   moongose
-*   Postman
