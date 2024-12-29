@@ -1,14 +1,61 @@
 <h1 align="center" id="title">express-product-management-backend</h1>
 
-<p align="center" id="description">RESTful API for Product Management System with Multi-User Access.</p>
+<p align="center">
+  <strong>Webservice API for managing products with multi-user support</strong>
+</p>
 
-<br>
-<h2 align="center">ERD (Entity-Relationship Diagram)</h2>
+<p align="center">
+  A modern REST API designed to manage product data and enable role-based access control for different users.
+</p>
+
+---
+
+## 🌟Project Overview 
+
+The **Productly - Webservice API** is a comprehensive solution designed to manage product data and ensure secure, role-based access control for different types of users. Key features include:
+
+- **Product Management 📦:** Manage product data efficiently.
+- **Role-Based Access Control 🔐:** Secure user roles to manage who can access and modify data.
+- **JWT Authentication 💼:** Secure access control with JSON Web Token (JWT).
+- **Testing with Postman 🧪:** Validate API functionality and ensure smooth integration.
+
+The API is continuously being improved with a focus on:
+
+- Strengthening authentication and authorization mechanisms.
+- Ensuring the security of communication between users and the server.
+
+---
+
+## ⚙️ Technologies Used 
+
+- **Backend:** TypeScript with Express.js
+- **Database:** MongoDB
+- **Security:** JWT for secure authentication and role-based access control
+- **Testing:** Postman for API endpoint validation
+- **Architecture:** Clean Architecture with structured separation of concerns
+
+---
+
+## 🏗️ Architecture 
+
+The API follows **Clean Architecture**, ensuring that the code is scalable, maintainable, and easy to extend. The structure includes:
+
+- **Repositories 📦:** For data persistence and database operations
+- **Services 🔄:** Organized with interfaces to separate business logic
+- **DTOs (Data Transfer Objects) 📝:** Used for structured request and response handling
+
+The architecture is designed for clear separation of concerns, high maintainability, and easy scalability.
+
+---
+
+<h2>🗂️ ERD (Entity-Relationship Diagram)</h2>
+
 <div style="display: flex; justify-content: center;">
 <img width="100%" alt="erd_db_product_managmenet" src="https://github.com/user-attachments/assets/b952c2b3-2eaa-44cc-8ea5-3667129e7baf">
 </div>
 
-<br>
+---
+
 <h2>🌐 Api Endpoint</h2>
 
 Here're some of the project's API Endpoint :
@@ -45,6 +92,7 @@ Here're some of the project's API Endpoint :
 - **page**: (Optional) Define the page number for pagination. Default value: `1`. Example: `page=1` will return the first page of results.
 - **size**: (Optional) Define the number of results per page. Default value: `10`. Example: `size=2` will return 2 results per page.
 
+---
   
 <h2>🛠️ Installation Steps :</h2>
 
@@ -94,7 +142,8 @@ npm run dev
 > * Admin account initialized successfully (email: admin@example.com, pass: securePassword123)
 > * Server is running on port 4000
 
-<br />
+---
+
 <h2>📃 Docs API</h2>
   
 Postman :
@@ -102,6 +151,7 @@ Postman :
 * Open Postman and Import for collections docs/Product Management.postman_collection.json
 * Open Postman and Import for environments docs/Product Management.postman_environment.json
 
+---
 
 <h2>💻 Built with</h2>
 
