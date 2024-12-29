@@ -55,6 +55,13 @@ The architecture is designed for clear separation of concerns, high maintainabil
 
 Here're some of the project's API Endpoint :
 
+<br />
+
+> [!NOTE]  
+> * **Authentication**: Using Bearer token (JWT) for requests requiring authentication.
+
+<br />
+
 <h3>Authentication</h3>
 
 | Endpoint                     | Method | Authentication Required | Description                                    | Request Body                                                                                  |
@@ -72,20 +79,6 @@ Here're some of the project's API Endpoint :
 | `/products`                   | GET    | Viewer or Admin          | Show all products                               | `None`                                                                                           | 'name=Laptop&price=40&page=2&size=1&sort=name&direction=asc'  |
 | `/products/{id}`             | PUT    | Admin                   | Edit product details                            | `{ "name": "Laptop Thinkpad L0012", "description": "With upgrade ram to 12gb + 4gb", "price": 4000000 }` | None                       |
 | `/products/{id}`              | DELETE | Admin                   | Delete a product                                | `None`                                                                                           | None                       |
-
-<h3>Data Constraints</h3>
-
-- **Name**: Must be unique for each user and product.
-- **Email**: Must be unique for each user.
-
-<h3>Query Parameters Explanation</h3>
-
-- **name**: (Optional) Filter product by name. Example: `name=Laptop` will return patients whose name is "Laptop".
-- **price**: (Optional) Filter by product price. Example: price=40 will return products with a price of 40. The default behavior will include all price values.
-- **sort**: (Optional) Define the field by which the results should be sorted. Valid values are `name`, `price`, or `createdAt`. If the value is invalid, the default sort will be `createdAt`.
-- **direction**: (Optional) Define the sorting order. Possible values are `asc` (ascending) or `desc` (descending). Default value: `desc`. Example: `direction=desc` will return results sorted in descending order.
-- **page**: (Optional) Define the page number for pagination. Default value: `1`. Example: `page=1` will return the first page of results.
-- **size**: (Optional) Define the number of results per page. Default value: `10`. Example: `size=2` will return 2 results per page.
 
 ---
   
