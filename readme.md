@@ -19,11 +19,6 @@ The **Productly - Webservice API** is a comprehensive solution designed to manag
 - **JWT Authentication 💼:** Secure access control with JSON Web Token (JWT).
 - **Testing with Postman 🧪:** Validate API functionality and ensure smooth integration.
 
-The API is continuously being improved with a focus on:
-
-- Strengthening authentication and authorization mechanisms.
-- Ensuring the security of communication between users and the server.
-
 ---
 
 ## ⚙️ Technologies Used 
