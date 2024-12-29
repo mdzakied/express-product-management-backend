@@ -12,7 +12,6 @@
 <h2>🌐 Api Endpoint</h2>
 
 Here're some of the project's API Endpoint :
-Here’s the updated table with the new query parameters for the `GET all products` endpoint:
 
 <h3>Authentication</h3>
 
