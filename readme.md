@@ -116,7 +116,7 @@ npm install
 ```
 
 <br />
-<p>6. Run Project for Development</p>
+<p>5. Run Project for Development</p>
 
 ```
 npm run dev 
